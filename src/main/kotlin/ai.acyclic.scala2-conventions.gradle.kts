@@ -38,6 +38,13 @@ allprojects {
         testFixturesApi("org.scalatest:scalatest_${vs.scala.binaryV}:${vs.scalaTestV}")
         testImplementation("org.junit.jupiter:junit-jupiter:5.10.0")
         testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.2.0")
+
+        if (vs.splainV.isNotEmpty()) {
+            val splainD = "io.tryp:splain_${vs.scala.v}:${vs.splainV}"
+            logger.warn("${project.displayName} / scalaCompilerPlugins:\n\t --- using ${splainD}")
+
+            scalaCompilerPlugins(splainD)
+        }
     }
 
     scala {
@@ -86,7 +93,7 @@ allprojects {
 
                 )
 
-                if (!vs.splainV.isEmpty()) {
+                if (vs.splainV.isNotEmpty()) {
                     compilerOptions.addAll(
                         listOf(
                             "-Vimplicits",

@@ -4,12 +4,12 @@ import org.gradle.api.Project
 class Versions(private val self: Project) {
 
     // TODO : how to group them?
-    val projectGroup = "ai.acyclic"
-    val projectRootID = "scaffold"
+    val rootGroup = self.properties["rootGroup"]?.toString() ?: "ai.acyclic"
 
-    val projectV = "0.1.0-SNAPSHOT"
-    val projectVMajor = projectV.removeSuffix("-SNAPSHOT")
-//    val projectVComposition = projectV.split('-')
+    val rootID = self.properties["rootID"]?.toString() ?: "scaffold"
+
+    val rootV = self.properties["rootVersion"]?.toString() ?: "1.0.0-SNAPSHOT"
+    val rootVMajor = rootV.removeSuffix("-SNAPSHOT")
 
     inner class Scala {
         val group: String = self.properties["scalaGroup"].toString()

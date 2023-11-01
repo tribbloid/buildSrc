@@ -1,6 +1,4 @@
-import org.gradle.api.JavaVersion
 import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.api.tasks.scala.ScalaCompile
 import org.gradle.kotlin.dsl.*
 
 plugins {
@@ -12,8 +10,6 @@ plugins {
 }
 
 val vs = versions()
-
-val rootID = vs.projectRootID
 
 val sonatypeApiUser = providers.gradleProperty("sonatypeApiUser")
 val sonatypeApiKey = providers.gradleProperty("sonatypeApiKey")
@@ -58,13 +54,15 @@ subprojects {
 
     apply(plugin = "maven-publish")
     publishing {
+        val rootID = vs.rootID
+
         val moduleID = if (project.name.startsWith(rootID)) project.name
         else rootID + "-" + project.name
 
         publications {
             create<MavenPublication>("maven") {
-                groupId = groupId
                 artifactId = moduleID
+                groupId = groupId // TODO: redundant
                 version = version
 
                 from(components["java"])

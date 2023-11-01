@@ -1,7 +1,4 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-import org.gradle.api.JavaVersion
-import org.gradle.api.publish.maven.MavenPublication
-import org.gradle.api.tasks.scala.ScalaCompile
 import org.gradle.kotlin.dsl.*
 
 plugins {
@@ -15,7 +12,6 @@ plugins {
 }
 
 val vs = versions()
-val rootID = vs.projectRootID
 
 // TODO: remove after https://github.com/ben-manes/gradle-versions-plugin/issues/816 resolved
 tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
@@ -44,8 +40,8 @@ allprojects {
 
     apply(plugin = "idea")
 
-    group = vs.projectGroup
-    version = vs.projectV
+    group = vs.rootGroup
+    version = vs.rootV
 
     repositories {
         mavenLocal()

@@ -41,7 +41,7 @@ allprojects {
 
         if (vs.splainV.isNotEmpty()) {
             val splainD = "io.tryp:splain_${vs.scala.v}:${vs.splainV}"
-            logger.warn("${project.displayName} / scalaCompilerPlugins:\n\t --- using ${splainD}")
+            logger.warn("using ${splainD} ...\t in ${project.displayName} / scalaCompilerPlugins")
 
             scalaCompilerPlugins(splainD)
         }

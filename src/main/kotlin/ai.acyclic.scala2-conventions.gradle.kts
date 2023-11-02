@@ -96,11 +96,12 @@ allprojects {
                 if (vs.splainV.isNotEmpty()) {
                     compilerOptions.addAll(
                         listOf(
-                            "-Vimplicits",
-                            "-Vtype-diffs",
-                            "-P:splain:tree",
-                            "-P:splain:bounds:true",
-                            "-P:splain:boundsimplicits:true"
+                            "-Vimplicits", "-Vimplicits-verbose-tree", "-Vtype-diffs",
+                            "-P:splain:Vimplicits-diverging",
+//                            "-P:splain:Vtype-reduction",
+//                            "-P:splain:Vtype-detail:3",
+//                            "-P:splain:Vtype-diffs-detail:3",
+//                            "-P:splain:Vdebug"
                         )
                     )
                 }

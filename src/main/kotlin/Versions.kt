@@ -17,8 +17,9 @@ class Versions(private val self: Project) {
         val v: String = self.properties["scalaVersion"].toString()
         protected val vParts: List<String> = v.split('.')
 
+        val majorV: String = vParts[0]
         val binaryV: String = vParts.subList(0, 2).joinToString(".")
-        val minorV: String = vParts[2]
+        val patchV: String = vParts[2]
     }
     val scala = Scala()
 

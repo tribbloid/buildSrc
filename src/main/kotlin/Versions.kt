@@ -12,7 +12,7 @@ class Versions(private val self: Project) {
     val rootVMajor = rootV.removeSuffix("-SNAPSHOT")
 
     inner class Scala {
-        val group: String = self.properties["scalaGroup"].toString()
+        val group: String = self.properties["scalaGroup"]?.toString() ?: "org.scala-lang"
 
         val v: String = self.properties["scalaVersion"].toString()
         protected val vParts: List<String> = v.split('.')

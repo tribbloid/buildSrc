@@ -6,7 +6,6 @@ plugins {
 
     scala
     id("ai.acyclic.java-conventions")
-    id("io.github.cosmicsilence.scalafix")
 }
 
 val vs = versions()
@@ -75,11 +74,6 @@ allprojects {
             }
         }
 
-        apply(plugin = "io.github.cosmicsilence.scalafix")
-        scalafix {
-            semanticdb.autoConfigure.set(true)
-            semanticdb.version.set("4.8.11")
-        }
     }
 
     idea {

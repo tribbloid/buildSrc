@@ -1,3 +1,4 @@
+import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.api.tasks.scala.ScalaCompile
 import org.gradle.kotlin.dsl.*
 
@@ -9,6 +10,13 @@ plugins {
 }
 
 val vs = versions()
+
+// TODO: remove after https://github.com/ben-manes/gradle-versions-plugin/issues/816 resolved
+tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
+    filterConfigurations = Spec<Configuration> {
+        !it.name.startsWith("incrementalScalaAnalysis")
+    }
+}
 
 allprojects {
 
@@ -22,6 +30,24 @@ allprojects {
 
         testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
         testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.2.0")
+    }
+
+    fun SourceSet.compileJavaWithScalaC() {
+        val moved = java.srcDirs
+
+        scala {
+            setSrcDirs(srcDirs + moved)
+        }
+        java {
+            setSrcDirs(emptyList<String>())
+        }
+    }
+
+    // scalaC will compiler both scala & java sources
+    sourceSets {
+        main { compileJavaWithScalaC() }
+        testFixtures { compileJavaWithScalaC() }
+        test { compileJavaWithScalaC() }
     }
 
     tasks {
@@ -57,12 +83,11 @@ allprojects {
 
             useJUnitPlatform {
                 includeEngines("scalatest")
-                testLogging {
-                    events("passed", "skipped", "failed")
-                }
             }
 
             testLogging {
+
+                events("passed", "skipped", "failed")
 //                events = setOf(org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED, org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED, org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED, org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_OUT)
 //                exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
                 showExceptions = true

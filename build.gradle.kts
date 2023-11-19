@@ -1,17 +1,5 @@
 plugins {
     `kotlin-dsl`
-
-//    base
-//    java
-//    `java-test-fixtures`
-//
-//    scala
-//
-//    idea
-//
-//    `maven-publish`
-//
-//    id("com.github.ben-manes.versions" ) version "0.42.0"
 }
 
 repositories {

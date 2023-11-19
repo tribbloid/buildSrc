@@ -90,20 +90,22 @@ allprojects {
     }
 }
 
-subprojects {
+//subprojects {
+//
+//    apply(plugin = "project-report")
+//
+//}
 
-    apply(plugin = "project-report")
 
-    task("dependencyTree") {
+task("dependencyTree") {
 
-        dependsOn("dependencies", "htmlDependencyReport")
-    }
+    dependsOn("dependencies", "htmlDependencyReport")
+}
 
-    tasks {
+tasks {
 
-        htmlDependencyReport {
+    htmlDependencyReport {
 
-            reports.html.outputLocation.set(File("build/reports/dependencyTree/htmlReport"))
-        }
+        reports.html.outputLocation.set(File("build/reports/dependencyTree/htmlReport"))
     }
 }

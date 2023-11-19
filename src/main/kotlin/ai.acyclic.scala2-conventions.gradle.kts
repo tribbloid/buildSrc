@@ -6,13 +6,6 @@ plugins {
 
 val vs = versions()
 
-// see https://github.com/gradle/gradle/issues/13067
-// TODO: how do I move it into upstream plugins?
-fun DependencyHandler.bothImpl(dependencyNotation: Any): Unit {
-    implementation(dependencyNotation)
-    testFixturesImplementation(dependencyNotation)
-}
-
 allprojects {
 
     dependencies {

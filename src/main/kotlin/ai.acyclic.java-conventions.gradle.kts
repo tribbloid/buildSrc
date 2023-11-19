@@ -6,6 +6,7 @@ plugins {
     java
     `java-test-fixtures`
 
+    `project-report`
     idea
 
     id("com.github.ben-manes.versions" )
@@ -50,11 +51,6 @@ allprojects {
         maven("https://dl.bintray.com/kotlin/kotlin-dev")
     }
 
-    task("dependencyTree") {
-
-        dependsOn("dependencies")
-    }
-
     java {
 
         val jvmTarget = vs.jvmTarget
@@ -90,6 +86,24 @@ allprojects {
 
             isDownloadJavadoc = true
             isDownloadSources = true
+        }
+    }
+}
+
+subprojects {
+
+    apply(plugin = "project-report")
+
+    task("dependencyTree") {
+
+        dependsOn("dependencies", "htmlDependencyReport")
+    }
+
+    tasks {
+
+        htmlDependencyReport {
+
+            reports.html.outputLocation.set(File("build/reports/dependencyTree/htmlReport"))
         }
     }
 }

@@ -45,17 +45,9 @@ allprojects {
 
     // scalaC will compiler both scala & java sources
     sourceSets {
-        main {
-            this.compileJavaWithScalaC()
-        }
-
-        testFixtures {
-            this.compileJavaWithScalaC()
-        }
-
-        test {
-            this.compileJavaWithScalaC()
-        }
+        main { compileJavaWithScalaC() }
+        testFixtures { compileJavaWithScalaC() }
+        test { compileJavaWithScalaC() }
     }
 
     tasks {
@@ -91,12 +83,11 @@ allprojects {
 
             useJUnitPlatform {
                 includeEngines("scalatest")
-                testLogging {
-                    events("passed", "skipped", "failed")
-                }
             }
 
             testLogging {
+
+                events("passed", "skipped", "failed")
 //                events = setOf(org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED, org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED, org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED, org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_OUT)
 //                exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
                 showExceptions = true

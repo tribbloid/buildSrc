@@ -20,6 +20,7 @@ allprojects {
     apply(plugin = "java-library")
     apply(plugin = "java-test-fixtures")
 
+    apply(plugin = "project-report")
     apply(plugin = "idea")
 
     group = vs.rootGroup
@@ -69,6 +70,19 @@ allprojects {
             isDownloadSources = true
         }
     }
+
+    task("dependencyTree") {
+
+        dependsOn("dependencies", "htmlDependencyReport")
+    }
+
+    tasks {
+
+        htmlDependencyReport {
+
+            reports.html.outputLocation.set(File("build/reports/dependencyTree/htmlReport"))
+        }
+    }
 }
 
 idea {
@@ -78,18 +92,5 @@ idea {
         excludeDirs = excludeDirs + files(
             "gradle",
         )
-    }
-}
-
-task("dependencyTree") {
-
-    dependsOn("dependencies", "htmlDependencyReport")
-}
-
-tasks {
-
-    htmlDependencyReport {
-
-        reports.html.outputLocation.set(File("build/reports/dependencyTree/htmlReport"))
     }
 }

@@ -1,5 +1,3 @@
-import gradle.kotlin.dsl.accessors._46b0ca6400a65b9754358ead47fee5d2.implementation
-import gradle.kotlin.dsl.accessors._46b0ca6400a65b9754358ead47fee5d2.testFixturesImplementation
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.DependencyHandler
 
@@ -13,8 +11,8 @@ fun Project.versions(): Versions {
 
 
 // see https://github.com/gradle/gradle/issues/13067
-// TODO: how do I move it into upstream plugins?
 fun DependencyHandler.bothImpl(dependencyNotation: Any): Unit {
-    implementation(dependencyNotation)
-    testFixturesImplementation(dependencyNotation)
+    // TODO: https://stackoverflow.com/questions/77512791/in-gradle-kotlinscript-dsl-how-to-import-generated-class-accessors-like-implem
+    add("implementation" , dependencyNotation)
+    add("testFixturesImplementation" , dependencyNotation)
 }

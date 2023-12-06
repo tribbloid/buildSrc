@@ -55,9 +55,11 @@ subprojects {
     apply(plugin = "maven-publish")
     publishing {
         val rootID = vs.rootID
+        val suffix = "_" + vs.scala.binaryV
 
-        val moduleID = if (project.name.startsWith(rootID)) project.name
-        else rootID + "-" + project.name
+        val moduleID =
+            if (project.name.equals(rootID)) throw UnsupportedOperationException("root project should not be published")
+            else rootID + "-" + project.name + suffix
 
         publications {
             create<MavenPublication>("maven") {
@@ -65,10 +67,11 @@ subprojects {
                 groupId = groupId // TODO: redundant
                 version = version
 
-                from(components["java"])
+                val javaComponent = components["java"] as AdhocComponentWithVariants
+                from(javaComponent)
 
-                suppressPomMetadataWarningsFor("testFixturesApiElements")
-                suppressPomMetadataWarningsFor("testFixturesRuntimeElements")
+                javaComponent.withVariantsFromConfiguration(configurations["testFixturesApiElements"]) { skip() }
+                javaComponent.withVariantsFromConfiguration(configurations["testFixturesRuntimeElements"]) { skip() }
             }
         }
     }

@@ -1,5 +1,3 @@
-import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-
 plugins {
 //    base
     java
@@ -22,7 +20,7 @@ allprojects {
     apply(plugin = "project-report")
     apply(plugin = "idea")
 
-    group = vs.rootGroup
+    group = vs.rootGroupID
     version = vs.rootV
 
     repositories {

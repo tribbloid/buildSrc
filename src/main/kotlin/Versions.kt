@@ -8,6 +8,8 @@ class Versions(private val self: Project) {
 
     val rootID = self.properties["rootID"]?.toString() ?: "scaffold"
 
+    val rootGroupID = "$rootGroup.$rootID"
+
     val rootV = self.properties["rootVersion"]?.toString() ?: "1.0.0-SNAPSHOT"
     val rootVMajor = rootV.removeSuffix("-SNAPSHOT")
 

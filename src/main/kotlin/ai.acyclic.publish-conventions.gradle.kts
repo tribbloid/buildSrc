@@ -1,3 +1,4 @@
+import io.github.gradlenexus.publishplugin.NexusRepository
 import org.gradle.api.publish.maven.MavenPublication
 import org.gradle.kotlin.dsl.*
 
@@ -16,14 +17,11 @@ val sonatypeApiKey = providers.gradleProperty("sonatypeApiKey")
 if (sonatypeApiUser.isPresent && sonatypeApiKey.isPresent) {
     nexusPublishing {
         repositories {
-            sonatype {
 
-//                nexusUrl.set(uri("https://oss.sonatype.org/service/local/"))
-//                snapshotRepositoryUrl.set(uri("https://oss.sonatype.org/content/repositories/snapshots/"))
+            withType<NexusRepository> {
 
                 username.set(sonatypeApiUser)
                 password.set(sonatypeApiKey)
-                useStaging.set(true)
             }
         }
     }
@@ -34,6 +32,7 @@ if (sonatypeApiUser.isPresent && sonatypeApiKey.isPresent) {
 subprojects {
 
     apply(plugin = "signing")
+    apply(plugin = "maven-publish")
 
     // https://stackoverflow.com/a/66352905/1772342
 
@@ -54,18 +53,22 @@ subprojects {
 
     apply(plugin = "maven-publish")
     publishing {
+
         val rootID = vs.rootID
         val suffix = "_" + vs.scala.binaryV
 
         val moduleID =
             if (project.name.equals(rootID)) throw UnsupportedOperationException("root project should not be published")
-            else rootID + "-" + project.name + suffix
+            else rootID + project.path.replace(':','-') + suffix
+
+        logger.info("publishing module `${project.path}` as `$moduleID`")
 
         publications {
-            create<MavenPublication>("maven") {
+            withType<MavenPublication> {
                 artifactId = moduleID
-                groupId = groupId // TODO: redundant
-                version = version
+                groupId = vs.rootGroupID
+                // Lightweight Gradle Submodules use different groupID to avoid name collision
+                //  which should be reverted when publishing
 
                 val javaComponent = components["java"] as AdhocComponentWithVariants
                 from(javaComponent)

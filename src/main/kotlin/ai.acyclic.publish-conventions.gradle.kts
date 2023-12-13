@@ -52,29 +52,33 @@ subprojects {
     }
 
     apply(plugin = "maven-publish")
-    publishing {
 
-        val rootID = vs.rootID
-        val suffix = "_" + vs.scala.binaryV
+    val rootID = vs.rootID
+    if (project.name.equals(rootID)) {
+        // Do nothing, root project should not be published
+    }
+    else {
 
-        val moduleID =
-            if (project.name.equals(rootID)) throw UnsupportedOperationException("root project should not be published")
-            else rootID + project.path.replace(':','-') + suffix
+        publishing {
 
-        logger.info("publishing module `${project.path}` as `$moduleID`")
+            val suffix = "_" + vs.scala.binaryV
+            val moduleID = rootID + project.path.replace(':','-') + suffix
 
-        publications {
-            withType<MavenPublication> {
-                artifactId = moduleID
-                groupId = vs.rootGroupID
-                // Lightweight Gradle Submodules use different groupID to avoid name collision
-                //  which should be reverted when publishing
+            logger.info("module `${project.path}` will be published as `$moduleID`")
 
-                val javaComponent = components["java"] as AdhocComponentWithVariants
-                from(javaComponent)
+            publications {
+                withType<MavenPublication> {
+                    artifactId = moduleID
+                    groupId = vs.rootGroupID
+                    // Lightweight Gradle Submodules use different groupID to avoid name collision
+                    //  which should be reverted when publishing
 
-                javaComponent.withVariantsFromConfiguration(configurations["testFixturesApiElements"]) { skip() }
-                javaComponent.withVariantsFromConfiguration(configurations["testFixturesRuntimeElements"]) { skip() }
+                    val javaComponent = components["java"] as AdhocComponentWithVariants
+                    from(javaComponent)
+
+                    javaComponent.withVariantsFromConfiguration(configurations["testFixturesApiElements"]) { skip() }
+                    javaComponent.withVariantsFromConfiguration(configurations["testFixturesRuntimeElements"]) { skip() }
+                }
             }
         }
     }

@@ -25,7 +25,7 @@ class Versions(private val self: Project) {
     }
     val scala = Scala()
 
-    val jvmTarget = JavaVersion.VERSION_1_8
+    val jvmTarget = JavaVersion.VERSION_11
 
     val scalaTestV = "3.2.17"
     val splainV: String = self.properties["splainVersion"]?.toString() ?: ""

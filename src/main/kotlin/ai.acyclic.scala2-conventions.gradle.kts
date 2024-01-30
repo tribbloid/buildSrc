@@ -6,6 +6,8 @@ plugins {
 
 val vs = versions()
 
+val scalametaV = "4.8.15"
+
 allprojects {
 
     dependencies {
@@ -15,6 +17,9 @@ allprojects {
 //        bothImpl("${vs.scala.group}:scala-compiler:${vs.scala.v}") // enable if low-level mutli-stage programming is required
 
         testFixturesApi("org.scalatest:scalatest_${vs.scala.binaryV}:${vs.scalaTestV}")
+
+        // Don't delete, used for auto version upgrade
+        testImplementation("org.scalameta:scalameta_${vs.scala.binaryV}:$scalametaV")
 
         if (vs.splainV.isNotEmpty()) {
             val splainD = "io.tryp:splain_${vs.scala.v}:${vs.splainV}"
@@ -69,7 +74,7 @@ allprojects {
             apply(plugin = "io.github.cosmicsilence.scalafix")
             scalafix {
                 semanticdb.autoConfigure.set(true)
-                semanticdb.version.set("4.8.11")
+                semanticdb.version.set(scalametaV)
             }
         }
     }

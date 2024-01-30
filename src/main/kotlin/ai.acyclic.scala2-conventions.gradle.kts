@@ -43,19 +43,13 @@ allprojects {
                         "-language:existentials",
 
                         "-Ywarn-value-discard",
-                        "-Ywarn-unused:imports",
-                        "-Ywarn-unused:implicits",
-                        "-Ywarn-unused:params",
-                        "-Ywarn-unused:patvars",
+
+                        "-Ywarn-unused",
+
+                        "-Wconf:cat=unused-params:i",
 
                         "-Xlint:poly-implicit-overload",
                         "-Xlint:option-implicit",
-//                    ,
-//                    "-Xlog-implicits",
-//                    "-Xlog-implicit-conversions",
-//                    "-Xlint:implicit-not-found",
-//                    "-Xlint:implicit-recursion"
-
                     )
                 )
 

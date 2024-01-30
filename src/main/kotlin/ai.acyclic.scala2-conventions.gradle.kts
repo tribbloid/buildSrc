@@ -51,7 +51,7 @@ allprojects {
 
                         "-Ywarn-unused",
 
-                        "-Wconf:cat=unused-params:i",
+                        "-Wconf:cat=unused-params:i,cat=unused-locals:i",
 
                         "-Xlint:poly-implicit-overload",
                         "-Xlint:option-implicit",

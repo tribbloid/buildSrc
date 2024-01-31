@@ -47,11 +47,16 @@ allprojects {
                         "-language:higherKinds",
                         "-language:existentials",
 
-                        "-Ywarn-value-discard",
+//                        "-Ywarn-value-discard",
 
                         "-Ywarn-unused",
 
                         "-Wconf:cat=unused-params:i,cat=unused-locals:i",
+                        // see:
+                        // https://www.scala-lang.org/2021/01/12/configuring-and-suppressing-warnings.html
+
+//                        "-Wconf:cat=other-pure-statement:ws",
+//                        "-Wconf:cat=other-pure-statement:ws&site=.*Macro.*:s",
 
                         "-Xlint:poly-implicit-overload",
                         "-Xlint:option-implicit",

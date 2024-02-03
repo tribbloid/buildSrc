@@ -23,7 +23,7 @@ class Versions(private val self: Project) {
         val binaryV: String = vParts.subList(0, 2).joinToString(".")
         val patchV: String = vParts[2]
     }
-    val scala = Scala()
+    val scala: Scala by lazy { Scala() }
 
     val jvmTarget = JavaVersion.VERSION_11
 
@@ -31,4 +31,16 @@ class Versions(private val self: Project) {
     val splainV: String = self.properties["splainVersion"]?.toString() ?: ""
 
     val scalajsV: String? = self.properties.get("scalaJSVersion")?.toString()
+
+
+    inner class Spark {
+
+        val v: String = self.properties["sparkVersion"].toString()
+        protected val vParts: List<String> = v.split('.')
+
+        val majorV: String = vParts[0]
+        val binaryV: String = vParts.subList(0, 2).joinToString(".")
+        val patchV: String = vParts[2]
+    }
+    val spark: Spark by lazy { Spark() }
 }

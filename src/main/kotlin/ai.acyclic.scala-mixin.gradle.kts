@@ -28,7 +28,7 @@ allprojects {
 
     dependencies {
 
-        testImplementation("org.junit.jupiter:junit-jupiter:5.10.1")
+        testImplementation("org.junit.jupiter:junit-jupiter:5.10.2")
         testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.2.0")
     }
 

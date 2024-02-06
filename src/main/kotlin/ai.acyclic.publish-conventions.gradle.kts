@@ -61,8 +61,7 @@ subprojects {
 
         publishing {
 
-            val suffix = "_" + vs.scala.binaryV
-            val moduleID = rootID + project.path.replace(':','-') + suffix
+            val moduleID = getModuleID(project)
 
             logger.info("module `${project.path}` will be published as `$moduleID`")
 

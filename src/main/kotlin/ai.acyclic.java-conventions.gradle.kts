@@ -30,6 +30,10 @@ allprojects {
         maven("https://dl.bintray.com/kotlin/kotlin-dev")
     }
 
+    tasks.withType<AbstractArchiveTask> {
+        archiveBaseName = getModuleID(project)
+    }
+
     java {
 
         val jvmTarget = vs.jvmTarget

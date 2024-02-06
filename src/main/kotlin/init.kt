@@ -15,3 +15,13 @@ fun DependencyHandler.bothImpl(dependencyNotation: Any): Unit {
     add("implementation" , dependencyNotation)
     add("testFixturesImplementation" , dependencyNotation)
 }
+
+
+fun getModuleID(project: Project): String {
+    val rootVersions = project.rootProject.versions()
+
+    val suffix = "_" + rootVersions.scala.binaryV
+    val moduleID = rootVersions.rootID + project.path.replace(':','-') + suffix
+
+    return moduleID
+}

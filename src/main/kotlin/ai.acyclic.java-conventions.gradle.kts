@@ -52,6 +52,8 @@ allprojects {
         module {
 
             excludeDirs = excludeDirs + files(
+
+                "build",
                 "target",
                 "out",
                 "bin",

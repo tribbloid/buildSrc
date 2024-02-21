@@ -28,6 +28,8 @@ allprojects {
 
                         "-verbose", "-explain",
 
+                        "-experimental"
+
 //                        "-language:experimental.dependent"
                     )
                 )

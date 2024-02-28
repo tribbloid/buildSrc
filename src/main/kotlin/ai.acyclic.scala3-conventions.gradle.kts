@@ -31,6 +31,9 @@ allprojects {
                         "-experimental"
 
 //                        "-language:experimental.dependent"
+
+//                        "-verbose", // enable in case of compiler bug
+//                        "-Ydebug",
                     )
                 )
             }

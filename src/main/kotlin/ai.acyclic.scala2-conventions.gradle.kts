@@ -60,6 +60,10 @@ allprojects {
 
                         "-Xlint:poly-implicit-overload",
                         "-Xlint:option-implicit",
+
+//                        "-verbose", // enable in case of compiler bug
+//                        "-Ydebug",
+
                     )
                 )
 

@@ -20,7 +20,10 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
 
 allprojects {
 
-    // apply(plugin = "bloop")
+    if (!plugins.hasPlugin("bloop")) {
+        apply(plugin = "bloop")
+    }
+
     // DO NOT enable! In VSCode it will cause the conflict:
     // Cannot add extension with name 'bloop', as there is an extension already registered with that name
 

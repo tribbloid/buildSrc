@@ -6,7 +6,7 @@ plugins {
     `project-report`
     idea
 
-    id("com.github.ben-manes.versions" )
+    id("com.github.ben-manes.versions")
 }
 
 val vs = versions()
@@ -43,6 +43,18 @@ allprojects {
 
         sourceCompatibility = jvmTarget
         targetCompatibility = jvmTarget
+    }
+
+
+    dependencies {
+
+        val jUnitV = "5.11.2"
+
+//        testImplementation("org.junit.jupiter:junit-jupiter-api:${jUnitV}")
+        testImplementation("org.junit.jupiter:junit-jupiter:${jUnitV}")
+//        testImplementation(platform("org.junit:junit-bom:${jUnitV}"))
+
+//        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${jUnitV}")
     }
 
     idea {

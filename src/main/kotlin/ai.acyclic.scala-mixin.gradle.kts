@@ -1,5 +1,4 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-import org.gradle.api.tasks.scala.ScalaCompile
 import org.gradle.kotlin.dsl.*
 
 
@@ -31,7 +30,6 @@ allprojects {
 
     dependencies {
 
-        testImplementation("org.junit.jupiter:junit-jupiter:5.11.2")
         testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.2.0")
     }
 
@@ -71,9 +69,11 @@ allprojects {
                     memoryInitialSize = "1g"
                     memoryMaximumSize = "4g"
 
-                    // this may be over the top but the test code in macro & core frequently run implicit search on church encoded Nat type
                     jvmArgs = listOf(
-                        "-Xss256m"
+                        // this may be over the top but the test code in macro & core frequently run implicit search on church encoded Nat type
+                        "-Xss256m",
+                        // circumventing Java 17 + Apache Spark test runner
+                        //
                     )
                 }
             }

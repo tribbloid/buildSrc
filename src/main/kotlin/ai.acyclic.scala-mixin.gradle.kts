@@ -86,6 +86,37 @@ allprojects {
 
             useJUnitPlatform {
                 includeEngines("scalatest")
+
+                var addOpens =
+                    """
+                        java.base/java.lang
+                        java.base/java.lang.invoke
+                        java.base/java.lang.reflect
+                        java.base/java.io
+                        java.base/java.net
+                        java.base/java.nio
+                        java.base/java.util
+                        java.base/java.util.concurrent
+                        java.base/java.util.concurrent.atomic
+                        java.base/jdk.internal.ref
+                        java.base/sun.nio.ch
+                        java.base/sun.nio.cs
+                        java.base/sun.security.action
+                        java.base/sun.util.calendar
+                    """.trimIndent().split("\n")
+                // from apache spark test runner
+
+                var allArgs = listOf(
+                    "-Xmx2048m",  // Maximum heap size
+                    "-XX:MaxMetaspaceSize=512m",  // Maximum metaspace size
+                    "-XX:+HeapDumpOnOutOfMemoryError",  // Dump heap on OOM
+                    "-Dfile.encoding=UTF-8",  // Set file encoding
+                )
+                for (pkg in addOpens) {
+                    allArgs += "--add-opens=$pkg=ALL-UNNAMED"
+                }
+
+                jvmArgs(allArgs)
             }
 
             testLogging {

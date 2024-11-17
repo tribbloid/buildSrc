@@ -17,6 +17,12 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
     }
 }
 
+dependencies {
+
+    testImplementation("org.scalameta:scalafmt-interfaces:3.8.3")// only used for prompting upgrade
+
+}
+
 allprojects {
 
     if (!plugins.hasPlugin("bloop")) {

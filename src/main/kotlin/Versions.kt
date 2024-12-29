@@ -25,7 +25,7 @@ class Versions(private val rootProject: Project) {
     }
     val scala: Scala by lazy { Scala() }
 
-    val jvmTarget = JavaVersion.VERSION_11
+    val jvmTarget = JavaVersion.VERSION_17
 
     val scalaTestV = "3.2.17"
     val splainV: String = rootProject.properties["splainVersion"]?.toString() ?: ""

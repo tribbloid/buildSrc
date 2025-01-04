@@ -29,6 +29,8 @@ allprojects {
                         "-verbose", "-explain",
 
                         "-experimental",
+                        "-source:future",
+                        "-language:experimental.modularity",
                         "-explain-cyclic"
 
 //                        "-language:experimental.dependent"

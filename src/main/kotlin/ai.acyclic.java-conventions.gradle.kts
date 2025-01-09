@@ -26,8 +26,15 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
+
 //        jcenter()
         maven("https://dl.bintray.com/kotlin/kotlin-dev")
+
+        // for Scala formless
+        maven {
+            name = "bondlink-maven-repo"
+            url = uri("https://raw.githubusercontent.com/mblink/maven-repo/main")
+        }
     }
 
     tasks.withType<AbstractArchiveTask> {

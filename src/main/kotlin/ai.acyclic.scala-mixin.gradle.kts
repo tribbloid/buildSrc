@@ -19,7 +19,7 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
 
 dependencies {
 
-    testImplementation("org.scalameta:scalafmt-interfaces:3.8.3")// only used for prompting upgrade
+    testImplementation("org.scalameta:scalafmt-interfaces:3.8.4")// only used for prompting upgrade
 
 }
 

@@ -6,7 +6,7 @@ plugins {
 
 val vs = versions()
 
-val scalametaV = "4.12.3"
+val scalametaV = "4.12.5"
 
 allprojects {
 

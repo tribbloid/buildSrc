@@ -6,6 +6,7 @@ plugins {
 
     scala
     id("ai.acyclic.java-conventions")
+    id("io.github.cosmicsilence.scalafix")
 }
 
 val vs = versions()
@@ -23,6 +24,8 @@ dependencies {
 
 }
 
+val scalametaV = "4.12.5"
+
 allprojects {
 
     if (!plugins.hasPlugin("bloop")) {
@@ -37,6 +40,9 @@ allprojects {
     dependencies {
 
         testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.2.0")
+
+        // Don't delete, used for auto version upgrade
+        testImplementation("org.scalameta:scalameta_${vs.scala.binaryV}:$scalametaV")
     }
 
     fun SourceSet.compileJavaWithScalaC() {
@@ -82,6 +88,12 @@ allprojects {
                         //
                     )
                 }
+            }
+
+            apply(plugin = "io.github.cosmicsilence.scalafix")
+            scalafix {
+                semanticdb.autoConfigure.set(true)
+                semanticdb.version.set(scalametaV)
             }
         }
 

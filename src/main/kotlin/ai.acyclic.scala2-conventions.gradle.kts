@@ -1,12 +1,9 @@
 plugins {
 
     id("ai.acyclic.scala-mixin")
-    id("io.github.cosmicsilence.scalafix")
 }
 
 val vs = versions()
-
-val scalametaV = "4.12.5"
 
 allprojects {
 
@@ -17,9 +14,6 @@ allprojects {
 //        bothImpl("${vs.scala.group}:scala-compiler:${vs.scala.v}") // enable if low-level mutli-stage programming is required
 
         testFixturesApi("org.scalatest:scalatest_${vs.scala.binaryV}:${vs.scalaTestV}")
-
-        // Don't delete, used for auto version upgrade
-        testImplementation("org.scalameta:scalameta_${vs.scala.binaryV}:$scalametaV")
 
         if (vs.splainV.isNotEmpty()) {
             val splainD = "io.tryp:splain_${vs.scala.v}:${vs.splainV}"
@@ -78,12 +72,6 @@ allprojects {
                         )
                     )
                 }
-            }
-
-            apply(plugin = "io.github.cosmicsilence.scalafix")
-            scalafix {
-                semanticdb.autoConfigure.set(true)
-                semanticdb.version.set(scalametaV)
             }
         }
     }

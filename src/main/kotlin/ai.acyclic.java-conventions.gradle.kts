@@ -1,7 +1,11 @@
+
 plugins {
-//    base
+    base
+
     java
     `java-test-fixtures`
+
+//    kotlin("jvm")
 
     `project-report`
     idea
@@ -38,7 +42,7 @@ allprojects {
     }
 
     tasks.withType<AbstractArchiveTask> {
-        archiveBaseName = getModuleID(project)
+        archiveBaseName.set(getModuleID(project))
     }
 
     java {

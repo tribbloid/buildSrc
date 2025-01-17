@@ -22,7 +22,13 @@ class Versions(private val rootProject: Project) {
         val majorV: String = vParts[0]
         val binaryV: String = vParts.subList(0, 2).joinToString(".")
         val patchV: String = vParts[2]
+
+        val artifactSuffix = run {
+            if (majorV == "3") majorV
+            else binaryV
+        }
     }
+
     val scala: Scala by lazy { Scala() }
 
     val jvmTarget = JavaVersion.VERSION_17
@@ -42,5 +48,6 @@ class Versions(private val rootProject: Project) {
         val binaryV: String = vParts.subList(0, 2).joinToString(".")
         val patchV: String = vParts[2]
     }
+
     val spark: Spark by lazy { Spark() }
 }

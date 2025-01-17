@@ -20,11 +20,10 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
 
 dependencies {
 
-    testImplementation("org.scalameta:scalafmt-interfaces:3.8.4")// only used for prompting upgrade
-
+    testImplementation("org.scalameta:scalafmt-interfaces:3.8.5")// only used for prompting upgrade
 }
 
-val scalametaV = "4.12.5"
+val scalametaV = "4.12.6"
 
 allprojects {
 
@@ -39,10 +38,12 @@ allprojects {
 
     dependencies {
 
+        testFixturesApi("org.scalatest:scalatest_${vs.scala.artifactSuffix}:${vs.scalaTestV}")
         testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.2.0")
 
         // Don't delete, used for auto version upgrade
-        testImplementation("org.scalameta:scalameta_${vs.scala.binaryV}:$scalametaV")
+        testImplementation("org.scalameta:scalameta_${vs.scala.artifactSuffix}:$scalametaV")
+
     }
 
     fun SourceSet.compileJavaWithScalaC() {
@@ -105,7 +106,7 @@ allprojects {
             useJUnitPlatform {
                 includeEngines("scalatest")
 
-                var addOpens =
+                val addOpens =
                     """
                         java.base/java.lang
                         java.base/java.lang.invoke

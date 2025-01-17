@@ -13,7 +13,6 @@ allprojects {
         bothImpl("${vs.scala.group}:scala-reflect:${vs.scala.v}")
 //        bothImpl("${vs.scala.group}:scala-compiler:${vs.scala.v}") // enable if low-level mutli-stage programming is required
 
-        testFixturesApi("org.scalatest:scalatest_${vs.scala.binaryV}:${vs.scalaTestV}")
 
         if (vs.splainV.isNotEmpty()) {
             val splainD = "io.tryp:splain_${vs.scala.v}:${vs.splainV}"

@@ -12,8 +12,6 @@ allprojects {
 
         bothImpl("org.scala-lang:scala3-library_3:${vs.scala.v}")
         bothImpl("org.scala-lang:scala3-staging_3:${vs.scala.v}")
-
-        testFixturesApi("org.scalatest:scalatest_3:${vs.scalaTestV}")
     }
 
     tasks {

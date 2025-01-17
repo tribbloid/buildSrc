@@ -30,19 +30,15 @@ allprojects {
 
                 additionalParameters.addAll(
                     listOf(
-                        "-encoding", "UTF-8",
-
-                        "-g:vars", // demand by json4s
-
                         "-deprecation",
                         "-unchecked",
                         "-feature",
                         "-language:higherKinds",
                         "-language:existentials",
 
+                        "-g:vars", // demand by json4s
+                        "-Ywarn-unused",// demand by scalafix
 //                        "-Ywarn-value-discard",
-
-                        "-Ywarn-unused",
 
                         "-Wconf:cat=unused-params:i,cat=unused-locals:i",
                         // see:

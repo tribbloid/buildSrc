@@ -89,6 +89,12 @@ allprojects {
                         //
                     )
                 }
+
+                additionalParameters.addAll(
+                    listOf(
+                        "-encoding", "UTF-8",
+                    )
+                )
             }
 
             apply(plugin = "io.github.cosmicsilence.scalafix")

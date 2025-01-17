@@ -22,15 +22,14 @@ allprojects {
 
                 additionalParameters.addAll(
                     listOf(
-
-                        "-encoding", "UTF-8",
-
                         "-verbose", "-explain",
 
                         "-experimental",
                         "-source:future",
                         "-language:experimental.modularity",
-                        "-explain-cyclic"
+                        "-explain-cyclic",
+
+                        "-Wunused:all",// demand by scalafix
 
 //                        "-language:experimental.dependent"
 

@@ -141,6 +141,9 @@ allprojects {
                     allArgs += "--add-opens=$pkg=ALL-UNNAMED"
                 }
 
+//                val str = allArgs.joinToString(" ")
+//                println("== [ScalaTest JVM arguments] == ${str}")
+
                 jvmArgs(allArgs)
             }
 

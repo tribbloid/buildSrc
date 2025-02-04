@@ -1,4 +1,3 @@
-
 plugins {
     base
 
@@ -8,7 +7,9 @@ plugins {
 //    kotlin("jvm")
 
     `project-report`
+
     idea
+    eclipse
 
     id("com.github.ben-manes.versions")
 }
@@ -23,6 +24,7 @@ allprojects {
 
     apply(plugin = "project-report")
     apply(plugin = "idea")
+    apply(plugin = "eclipse")
 
     group = vs.rootGroupID
     version = vs.rootV
@@ -56,7 +58,6 @@ allprojects {
         targetCompatibility = jvmTarget
     }
 
-
     dependencies {
 
         val jUnitV = "5.11.4"
@@ -68,11 +69,29 @@ allprojects {
 //        testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${jUnitV}")
     }
 
+    eclipse {
+
+        classpath {
+
+            isDownloadJavadoc = true
+            isDownloadSources = true
+        }
+    }
+
+
     idea {
 
         targetVersion = "2023"
 
+
         module {
+
+            isDownloadJavadoc = true
+            isDownloadSources = true
+
+            excludeDirs = excludeDirs + files(
+                "gradle",
+            )
 
             excludeDirs = excludeDirs + files(
 
@@ -91,9 +110,6 @@ allprojects {
 
                 "logs"
             )
-
-            isDownloadJavadoc = true
-            isDownloadSources = true
         }
     }
 
@@ -108,15 +124,5 @@ allprojects {
 
             reports.html.outputLocation.set(File("build/reports/dependencyTree/htmlReport"))
         }
-    }
-}
-
-idea {
-
-    module {
-
-        excludeDirs = excludeDirs + files(
-            "gradle",
-        )
     }
 }

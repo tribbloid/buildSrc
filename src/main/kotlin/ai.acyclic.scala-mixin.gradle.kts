@@ -23,7 +23,7 @@ dependencies {
     testImplementation("org.scalameta:scalafmt-interfaces:3.8.6")// only used for prompting upgrade
 }
 
-val scalametaV = "4.12.7"
+val scalametaV = "4.13.1.1"
 
 allprojects {
 

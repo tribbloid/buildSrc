@@ -22,9 +22,11 @@ allprojects {
 
                 additionalParameters.addAll(
                     listOf(
-                        "-verbose", "-explain",
+//                        "-verbose"
+                        "-explain",
 
                         "-experimental",
+                        "-feature",
                         "-source:future",
                         "-language:experimental.modularity",
                         "-explain-cyclic",

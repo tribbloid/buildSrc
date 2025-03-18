@@ -36,6 +36,9 @@ allprojects {
                         "-language:higherKinds",
                         "-language:existentials",
 
+
+//                        "-Vtyper",
+
                         "-g:vars", // demand by json4s
                         "-Ywarn-unused",// demand by scalafix
 //                        "-Ywarn-value-discard",

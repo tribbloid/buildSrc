@@ -113,7 +113,7 @@ allprojects {
         }
     }
 
-    task("dependencyTree") {
+    tasks.register("dependencyTree") {
 
         dependsOn("dependencies", "htmlDependencyReport")
     }

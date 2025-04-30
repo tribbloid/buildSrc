@@ -163,8 +163,9 @@ $MODULE_WORKING_DIR$
                 showCauses = true
                 showStackTraces = true
 
+//                showStandardErrors = true
                 // stdout is used for occasional manual verification
-                showStandardStreams = true
+//                showStandardStreams = true
             }
         }
 

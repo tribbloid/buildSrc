@@ -7,7 +7,19 @@ plugins {
     scala
     id("ai.acyclic.java-conventions")
     id("io.github.cosmicsilence.scalafix")
+
 }
+
+// NOTE: com.github.maiflai.scalatest plugin must be applied via buildscript dependencies, not plugins DSL.
+// Add to your root build.gradle.kts or buildSrc if not present:
+// buildscript {
+//     repositories {
+//         mavenCentral()
+//     }
+//     dependencies {
+//         classpath("com.github.maiflai:gradle-scalatest:0.32")
+//     }
+// }
 
 val vs = versions()
 
@@ -23,7 +35,7 @@ dependencies {
     testImplementation("org.scalameta:scalafmt-interfaces:3.9.4")// only used for prompting upgrade
 }
 
-val scalametaV = "4.13.4"
+val scalametaV = "4.13.5"
 
 allprojects {
 
@@ -35,14 +47,26 @@ allprojects {
     // Cannot add extension with name 'bloop', as there is an extension already registered with that name
 
     apply(plugin = "scala")
+    apply(plugin = "com.github.maiflai.scalatest")
 
     dependencies {
 
         testFixturesApi("org.scalatest:scalatest_${vs.scala.artifactSuffix}:${vs.scalaTestV}")
-        testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.2.0")
 
         // Don't delete, used for auto version upgrade
-        testImplementation("org.scalameta:scalameta_${vs.scala.artifactSuffix}:$scalametaV")
+        testRuntimeOnly("org.scalameta:scalameta_${vs.scala.artifactSuffix}:$scalametaV")
+
+        // option 1
+        testRuntimeOnly("com.vladsch.flexmark:flexmark-all:0.64.8")
+
+        // option 2
+//        testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.2.0")
+
+        // option 3
+//        testRuntimeOnly("org.junit.platform:junit-platform-engine:1.12.0")
+//        testRuntimeOnly("org.junit.platform:junit-platform-launcher:1.12.0")
+//        testRuntimeOnly("org.scalatestplus:junit-5-12_${vs.scala.artifactSuffix}:3.2.19.0")
+
 
     }
 
@@ -109,18 +133,14 @@ allprojects {
             minHeapSize = "1024m"
             maxHeapSize = "4096m"
 
-            useJUnitPlatform {
-                includeEngines("scalatest")
-
-
-                /*
+            /*
 in IDE:
 --add-opens=java.base/java.lang=ALL-UNNAMED --add-opens=java.base/java.lang.invoke=ALL-UNNAMED --add-opens=java.base/java.lang.reflect=ALL-UNNAMED --add-opens=java.base/java.io=ALL-UNNAMED --add-opens=java.base/java.net=ALL-UNNAMED --add-opens=java.base/java.nio=ALL-UNNAMED --add-opens=java.base/java.util=ALL-UNNAMED --add-opens=java.base/java.util.concurrent=ALL-UNNAMED --add-opens=java.base/java.util.concurrent.atomic=ALL-UNNAMED --add-opens=java.base/jdk.internal.ref=ALL-UNNAMED --add-opens=java.base/sun.nio.ch=ALL-UNNAMED --add-opens=java.base/sun.nio.cs=ALL-UNNAMED --add-opens=java.base/sun.security.action=ALL-UNNAMED --add-opens=java.base/sun.util.calendar=ALL-UNNAMED
 working directory:
 $MODULE_WORKING_DIR$
-                 */
-                val addOpens =
-                    """
+             */
+            val addOpens =
+                """
                         java.base/java.lang
                         java.base/java.lang.invoke
                         java.base/java.lang.reflect
@@ -136,29 +156,32 @@ $MODULE_WORKING_DIR$
                         java.base/sun.security.action
                         java.base/sun.util.calendar
                     """.trimIndent().split("\n")
-                // from apache spark test runner
+            // from apache spark test runner
 
-                var allArgs = listOf(
-                    "-Xmx2048m",  // Maximum heap size
-                    "-XX:MaxMetaspaceSize=512m",  // Maximum metaspace size
-                    "-XX:+HeapDumpOnOutOfMemoryError",  // Dump heap on OOM
-                    "-Dfile.encoding=UTF-8",  // Set file encoding
-                )
-                for (pkg in addOpens) {
-                    allArgs += "--add-opens=$pkg=ALL-UNNAMED"
-                }
+            var allArgs = listOf(
+                "-Xmx2048m",  // Maximum heap size
+                "-XX:MaxMetaspaceSize=512m",  // Maximum metaspace size
+                "-XX:+HeapDumpOnOutOfMemoryError",  // Dump heap on OOM
+                "-Dfile.encoding=UTF-8",  // Set file encoding
+            )
+            for (pkg in addOpens) {
+                allArgs += "--add-opens=$pkg=ALL-UNNAMED"
+            }
 
 //                val str = allArgs.joinToString(" ")
 //                println("== [ScalaTest JVM arguments] == ${str}")
 
-                jvmArgs(allArgs)
-            }
+            jvmArgs(allArgs)
+
+//            useJUnitPlatform {
+//                includeEngines("scalatest")
+//            }
 
             testLogging {
 
                 events("passed", "skipped", "failed")
 //                events = setOf(org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED, org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED, org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED, org.gradle.api.tasks.testing.logging.TestLogEvent.STANDARD_OUT)
-//                exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
+                exceptionFormat = org.gradle.api.tasks.testing.logging.TestExceptionFormat.FULL
                 showExceptions = true
                 showCauses = true
                 showStackTraces = true

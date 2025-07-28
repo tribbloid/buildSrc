@@ -20,10 +20,10 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
 
 dependencies {
 
-    testImplementation("org.scalameta:scalafmt-interfaces:3.9.4")// only used for prompting upgrade
+    testImplementation("org.scalameta:scalafmt-interfaces:3.9.8")// only used for prompting upgrade
 }
 
-val scalametaV = "4.13.4"
+val scalametaV = "4.13.8"
 
 allprojects {
 
@@ -39,7 +39,12 @@ allprojects {
     dependencies {
 
         testFixturesApi("org.scalatest:scalatest_${vs.scala.artifactSuffix}:${vs.scalaTestV}")
-        testRuntimeOnly("co.helmethair:scalatest-junit-runner:0.2.0")
+
+        val jUnitPlatformV = "1.13.4"
+
+        testRuntimeOnly("org.junit.platform:junit-platform-engine:$jUnitPlatformV")
+        testRuntimeOnly("org.junit.platform:junit-platform-launcher:$jUnitPlatformV")
+        testRuntimeOnly("ai.acyclic.scalatestplus:junit-5-13_${vs.scala.artifactSuffix}:3.2.19.1")
 
         // Don't delete, used for auto version upgrade
         testImplementation("org.scalameta:scalameta_${vs.scala.artifactSuffix}:$scalametaV")

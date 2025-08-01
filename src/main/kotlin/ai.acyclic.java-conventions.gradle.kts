@@ -60,7 +60,7 @@ allprojects {
 
     dependencies {
 
-        val jUnitV = "5.11.4"
+        val jUnitV = "5.13.4"
 
 //        testImplementation("org.junit.jupiter:junit-jupiter-api:${jUnitV}")
         testImplementation("org.junit.jupiter:junit-jupiter:${jUnitV}")

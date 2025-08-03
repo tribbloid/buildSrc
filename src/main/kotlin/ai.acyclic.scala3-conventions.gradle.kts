@@ -27,8 +27,12 @@ allprojects {
 
                         "-experimental",
                         "-feature",
+
+//                        "-rewrite",
+//                        "-source:future-migration",
                         "-source:future",
-                        "-language:experimental.modularity",
+
+//                        "-language:experimental.modularity",
                         "-explain-cyclic",
 
                         "-Wunused:all",// demand by scalafix

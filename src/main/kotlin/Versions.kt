@@ -17,7 +17,9 @@ class Versions(private val rootProject: Project) {
         val group: String = rootProject.properties["scalaGroup"]?.toString() ?: "org.scala-lang"
 
         val v: String = rootProject.properties["scalaVersion"].toString()
-        protected val vParts: List<String> = v.split('.')
+        protected val vParts: List<String> = v.split('.').also { parts ->
+            require(parts.size == 3) { "Scala version must be in format 'X.Y.Z' but was: $v" }
+        }
 
         val majorV: String = vParts[0]
         val binaryV: String = vParts.subList(0, 2).joinToString(".")

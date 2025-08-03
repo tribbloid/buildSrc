@@ -33,9 +33,6 @@ allprojects {
         mavenLocal()
         mavenCentral()
 
-//        jcenter()
-        maven("https://dl.bintray.com/kotlin/kotlin-dev")
-
         // for Scala formless
         maven {
             name = "bondlink-maven-repo"
@@ -43,12 +40,7 @@ allprojects {
         }
     }
 
-    tasks.withType<AbstractArchiveTask> {
-        archiveBaseName.set(getModuleID(project))
-    }
-
     java {
-
         val jvmTarget = vs.jvmTarget
 
         withSourcesJar()

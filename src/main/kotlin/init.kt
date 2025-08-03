@@ -12,16 +12,16 @@ fun Project.versions(): Versions {
 // see https://github.com/gradle/gradle/issues/13067
 fun DependencyHandler.bothImpl(dependencyNotation: Any): Unit {
     // TODO: https://stackoverflow.com/questions/77512791/in-gradle-kotlinscript-dsl-how-to-import-generated-class-accessors-like-implem
-    add("implementation" , dependencyNotation)
-    add("testFixturesImplementation" , dependencyNotation)
+    add("implementation", dependencyNotation)
+    add("testFixturesImplementation", dependencyNotation)
 }
 
 
-fun getModuleID(project: Project): String {
+fun getModuleID_Scala(project: Project): String {
     val rootVersions = project.rootProject.versions()
 
     val suffix = "_" + rootVersions.scala.binaryV
-    val moduleID = rootVersions.rootID + project.path.replace(':','-') + suffix
+    val moduleID = rootVersions.rootID + project.path.replace(':', '-') + suffix
 
     return moduleID
 }

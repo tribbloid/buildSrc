@@ -18,12 +18,7 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
     }
 }
 
-dependencies {
-
-    testImplementation("org.scalameta:scalafmt-interfaces:3.9.8")// only used for prompting upgrade
-}
-
-val scalametaV = "4.13.8"
+val scalametaV = "4.13.9"
 
 allprojects {
 

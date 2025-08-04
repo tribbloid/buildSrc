@@ -43,12 +43,7 @@ allprojects {
         }
     }
 
-    tasks.withType<AbstractArchiveTask> {
-        archiveBaseName.set(getModuleID(project))
-    }
-
     java {
-
         val jvmTarget = vs.jvmTarget
 
         withSourcesJar()

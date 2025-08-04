@@ -31,6 +31,11 @@ allprojects {
 
     apply(plugin = "scala")
 
+
+    tasks.withType<AbstractArchiveTask> {
+        archiveBaseName.set(getModuleID_Scala(project))
+    }
+
     dependencies {
 
         testFixturesApi("org.scalatest:scalatest_${vs.scala.artifactSuffix}:${vs.scalaTestV}")

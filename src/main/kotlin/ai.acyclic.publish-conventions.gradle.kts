@@ -56,12 +56,11 @@ subprojects {
     val rootID = vs.rootID
     if (project.name.equals(rootID)) {
         // Do nothing, root project should not be published
-    }
-    else {
+    } else {
 
         publishing {
 
-            val moduleID = getModuleID(project)
+            val moduleID = getModuleID_Scala(project)
 
             logger.info("module `${project.path}` will be published as `$moduleID`")
 

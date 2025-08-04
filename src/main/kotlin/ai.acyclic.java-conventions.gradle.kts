@@ -33,9 +33,6 @@ allprojects {
         mavenLocal()
         mavenCentral()
 
-//        jcenter()
-        maven("https://dl.bintray.com/kotlin/kotlin-dev")
-
         // for Scala formless
         maven {
             name = "bondlink-maven-repo"

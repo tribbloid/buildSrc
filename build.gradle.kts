@@ -5,8 +5,6 @@ plugins {
 repositories {
     mavenLocal()
     mavenCentral()
-//    jcenter()
-    maven("https://dl.bintray.com/kotlin/kotlin-dev")
     gradlePluginPortal() // so that external plugins can be resolved in dependencies section
 }
 

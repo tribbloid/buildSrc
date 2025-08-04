@@ -1,7 +1,6 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
 import org.gradle.kotlin.dsl.*
 
-
 plugins {
 
     scala
@@ -24,10 +23,10 @@ allprojects {
 
     if (!plugins.hasPlugin("bloop")) {
         apply(plugin = "bloop")
+        // DO NOT apply directly! In VSCode it will cause the conflict:
+        // Cannot add extension with name 'bloop', as there is an extension already registered with that name
     }
 
-    // DO NOT enable! In VSCode it will cause the conflict:
-    // Cannot add extension with name 'bloop', as there is an extension already registered with that name
 
     apply(plugin = "scala")
 

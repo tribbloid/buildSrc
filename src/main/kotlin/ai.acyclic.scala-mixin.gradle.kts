@@ -11,11 +11,11 @@ plugins {
 val vs = versions()
 
 // TODO: remove after https://github.com/ben-manes/gradle-versions-plugin/issues/816 resolved
-tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
-    filterConfigurations = Spec<Configuration> {
-        !it.name.startsWith("incrementalScalaAnalysis")
-    }
-}
+//tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
+//    filterConfigurations = Spec<Configuration> {
+//        !it.name.startsWith("incrementalScalaAnalysis")
+//    }
+//}
 
 val scalametaV = "4.13.9"
 
@@ -31,9 +31,9 @@ allprojects {
     apply(plugin = "scala")
 
 
-    tasks.withType<AbstractArchiveTask> {
-        archiveBaseName.set(getModuleID_Scala(project))
-    }
+//    tasks.withType<AbstractArchiveTask> {
+//        archiveBaseName.set(getModuleID_Scala(project))
+//    }
 
     dependencies {
 

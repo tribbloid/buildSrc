@@ -27,7 +27,11 @@ allprojects {
 
                         "-experimental",
                         "-feature",
+
+//                        "-rewrite",
+//                        "-source:future-migration",
                         "-source:future",
+
 //                        "-language:experimental.modularity",
                         "-explain-cyclic",
 

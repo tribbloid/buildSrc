@@ -90,10 +90,6 @@ allprojects {
             isDownloadSources = true
 
             excludeDirs = excludeDirs + files(
-                "gradle",
-            )
-
-            excludeDirs = excludeDirs + files(
 
                 "build",
                 "target",
@@ -108,7 +104,10 @@ allprojects {
                 ".history",
                 ".lib",
 
-                "logs"
+                "logs",
+
+                ".classpath",
+                ".project"
             )
         }
     }
@@ -124,5 +123,16 @@ allprojects {
 
             reports.html.outputLocation.set(File("build/reports/dependencyTree/htmlReport"))
         }
+    }
+}
+
+idea {
+
+    module {
+
+        excludeDirs = excludeDirs + files(
+            "gradle",
+            "buildSrc/gradle",
+        )
     }
 }

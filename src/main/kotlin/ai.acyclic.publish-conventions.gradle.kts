@@ -51,8 +51,6 @@ subprojects {
         }
     }
 
-    apply(plugin = "maven-publish")
-
     val rootID = vs.rootID
     if (project.name.equals(rootID)) {
         // Do nothing, root project should not be published

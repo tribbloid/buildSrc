@@ -5,13 +5,15 @@ plugins {
 }
 
 val vs = versions()
+val vScala = vs.scala.v
+//val vScala = "3.3.6"
 
 allprojects {
 
     dependencies {
 
-        bothImpl("org.scala-lang:scala3-library_3:${vs.scala.v}")
-        bothImpl("org.scala-lang:scala3-staging_3:${vs.scala.v}")
+        bothImpl("org.scala-lang:scala3-library_3:${vScala}")
+        bothImpl("org.scala-lang:scala3-staging_3:${vScala}")
     }
 
     tasks {
@@ -22,15 +24,15 @@ allprojects {
 
                 additionalParameters.addAll(
                     listOf(
-//                        "-verbose"
-                        "-explain",
+//                        "-verbose", // enable in case of compiler bug
+//                        "-explain",
 
-                        "-experimental",
                         "-feature",
 
 //                        "-rewrite",
+                        "-source:3.3-migration",
 //                        "-source:future-migration",
-                        "-source:future",
+//                        "-source:future",
 
 //                        "-language:experimental.modularity",
                         "-explain-cyclic",
@@ -39,7 +41,6 @@ allprojects {
 
 //                        "-language:experimental.dependent"
 
-//                        "-verbose", // enable in case of compiler bug
 //                        "-Ydebug",
                     )
                 )

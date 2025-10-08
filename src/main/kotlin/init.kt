@@ -1,5 +1,8 @@
 import org.gradle.api.Project
 import org.gradle.api.artifacts.dsl.DependencyHandler
+import org.gradle.api.provider.Provider
+import org.gradle.kotlin.dsl.apply
+import org.gradle.plugin.use.PluginDependency
 
 /**
  * Configures the current project as a Kotlin project by adding the Kotlin `stdlib` as a dependency.
@@ -10,7 +13,7 @@ fun Project.versions(): Versions {
 }
 
 // see https://github.com/gradle/gradle/issues/13067
-fun DependencyHandler.bothImpl(dependencyNotation: Any): Unit {
+fun DependencyHandler.bothImpl(dependencyNotation: Any) {
     // TODO: https://stackoverflow.com/questions/77512791/in-gradle-kotlinscript-dsl-how-to-import-generated-class-accessors-like-implem
     add("implementation", dependencyNotation)
     add("testFixturesImplementation", dependencyNotation)
@@ -25,3 +28,5 @@ fun getModuleID_Scala(project: Project): String {
 
     return moduleID
 }
+
+fun Project.pluginAlias(plugin: Provider<PluginDependency>) = this.apply(plugin = plugin.get().pluginId)

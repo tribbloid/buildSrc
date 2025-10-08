@@ -1,0 +1,43 @@
+plugins {
+
+    id("ai.acyclic.scala2-conventions")
+}
+
+val vs = versions()
+
+allprojects {
+
+    dependencies {
+
+//        scalaCompilerPlugins("org.typelevel:kind-projector_${vs.scala.v}:0.13.3") // TODO: no longer maintained
+    }
+
+    tasks {
+
+        withType<ScalaCompile> {
+
+            scalaCompileOptions.additionalParameters.addAll(
+                listOf(
+
+//                    "-Xsource:3",
+                    "-Xsource:3-cross",
+                    // quickfix should be disabled ASAP after migration
+//                    "-quickfix:any",
+//                    "-quickfix:cat=scala3-migration",
+
+
+                    // the above "quickfix" can't handle many syntax changes, like [_] => [?] or import x._ => import x.*
+                    // in this case IntelliJ IDEA analyze/`Run inspection by name`/quickfix should be used
+
+//                        "-quickfix:help", TODO: this doesn't work
+//                        "-rewrite",
+
+                    "-Wconf:msg=lambda-parens:s",
+                    "-Xsource-features:case-apply-copy-access",// this is the standard for Scala 3
+
+//                    "-P:kind-projector:underscore-placeholders"
+                )
+            )
+        }
+    }
+}

@@ -29,16 +29,19 @@ class Versions(private val rootProject: Project) {
             if (majorV == "3") majorV
             else binaryV
         }
+
+        val jsV: String? = rootProject.properties.get("scalaJSVersion")?.toString()
     }
 
     val scala: Scala by lazy { Scala() }
 
-    val jvmTarget = JavaVersion.VERSION_17
+    val javaVersion = rootProject.properties["javaVersion"]?.toString()?.let { JavaVersion.toVersion(it) }
+        ?: JavaVersion.VERSION_17
+
+    val jvmTarget = javaVersion
 
     val scalaTestV = "3.2.19"
     val splainV: String = rootProject.properties["splainVersion"]?.toString() ?: ""
-
-    val scalajsV: String? = rootProject.properties.get("scalaJSVersion")?.toString()
 
 
     inner class Spark {

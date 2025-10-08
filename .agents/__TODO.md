@@ -1,0 +1,1 @@
+add Scala metals MCP

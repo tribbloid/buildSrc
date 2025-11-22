@@ -1,22 +1,22 @@
 import org.gradle.api.JavaVersion
 import org.gradle.api.Project
 
-class Versions(private val rootProject: Project) {
+class Versions(private val project: Project) {
 
     // TODO : how to group them?
-    val rootGroup = rootProject.properties["rootGroup"]?.toString() ?: "ai.acyclic"
+    val rootGroup = project.properties["rootGroup"]?.toString() ?: "ai.acyclic"
 
-    val rootID = rootProject.properties["rootID"]?.toString() ?: "scaffold"
+    val rootID = project.properties["rootID"]?.toString() ?: "scaffold"
 
     val rootGroupID = "$rootGroup.$rootID"
 
-    val rootV = rootProject.properties["rootVersion"]?.toString() ?: "1.0.0-SNAPSHOT"
+    val rootV = project.properties["rootVersion"]?.toString() ?: "1.0.0-SNAPSHOT"
     val rootVMajor = rootV.removeSuffix("-SNAPSHOT")
 
     inner class Scala {
-        val group: String = rootProject.properties["scalaGroup"]?.toString() ?: "org.scala-lang"
+        val group: String = project.properties["scalaGroup"]?.toString() ?: "org.scala-lang"
 
-        val v: String = rootProject.properties["scalaVersion"].toString()
+        val v: String = project.properties["scalaVersion"].toString()
         protected val vParts: List<String> = v.split('.').also { parts ->
             require(parts.size == 3) { "Scala version must be in format 'X.Y.Z' but was: $v" }
         }
@@ -30,23 +30,23 @@ class Versions(private val rootProject: Project) {
             else binaryV
         }
 
-        val jsV: String? = rootProject.properties.get("scalaJSVersion")?.toString()
+        val jsV: String? = project.properties.get("scalaJSVersion")?.toString()
     }
 
     val scala: Scala by lazy { Scala() }
 
-    val javaVersion = rootProject.properties["javaVersion"]?.toString()?.let { JavaVersion.toVersion(it) }
+    val javaVersion = project.properties["javaVersion"]?.toString()?.let { JavaVersion.toVersion(it) }
         ?: JavaVersion.VERSION_17
 
     val jvmTarget = javaVersion
 
     val scalaTestV = "3.2.19"
-    val splainV: String = rootProject.properties["splainVersion"]?.toString() ?: ""
+    val splainV: String = project.properties["splainVersion"]?.toString() ?: ""
 
 
     inner class Spark {
 
-        val v: String = rootProject.properties["sparkVersion"].toString()
+        val v: String = project.properties["sparkVersion"].toString()
         protected val vParts: List<String> = v.split('.')
 
         val majorV: String = vParts[0]

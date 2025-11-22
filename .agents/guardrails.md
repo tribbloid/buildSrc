@@ -11,9 +11,7 @@
 - **Do**
     - **Compile** often to verify your work.
     - **Write** larconic, minimal and elegant code that does the function.
-    - **Commit** code to git local repository after each task, each commit message should start with your model
-      name-version.
-    - **Format** code with `scalafmt` before committing.
+    - **Format** with `scalafmt` and **Commit** code before start editing. Commit message should start with "!amend [AI]" followed by your intention.
     - **Test** across supported Scala and Spark roots used in CI.
     - **Run** MiMa checks on changed modules.
     - **Keep Spark deps Provided**; do not add Spark as compile dependency.

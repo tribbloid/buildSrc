@@ -1,3 +1,5 @@
+import org.gradle.jvm.toolchain.JavaLanguageVersion
+
 plugins {
     id("ai.acyclic.ide-mixin")
 
@@ -18,6 +20,11 @@ allprojects {
 
     java {
         val jvmTarget = vs.jvmTarget
+
+        toolchain {
+            languageVersion.set(JavaLanguageVersion.of(jvmTarget.majorVersion))
+//            languageVersion.set(jvmTarget)
+        }
 
         withSourcesJar()
         withJavadocJar()

@@ -10,9 +10,10 @@
 
 - **Do**
     - **Compile** often to verify your work.
-    - **Write** larconic, minimal and elegant code that does the function.
+    - **Write** laconic, minimal and elegant code that does the function.
     - **Format** with `scalafmt` and **Commit** code before start editing. Commit message should start with "!amend [AI]" followed by your intention.
-    - **Test** across supported Scala and Spark roots used in CI.
+    - **Test** at the end of each iteration.
+    - **Report** number of successful and failed tests at the end of each task
     - **Run** MiMa checks on changed modules.
     - **Keep Spark deps Provided**; do not add Spark as compile dependency.
     - **Document** user-facing changes; add/adjust tests accordingly.

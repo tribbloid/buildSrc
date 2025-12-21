@@ -32,7 +32,7 @@ allprojects {
         // Don't delete, used for auto version upgrade
         testImplementation("org.scalameta:scalameta_${vs.scala.artifactSuffix}:$scalametaV")
 
-        var semanticdbJavacV = "0.11.1"
+        var semanticdbJavacV = "0.11.2"
 
         compileOnly("com.sourcegraph:semanticdb-javac:${semanticdbJavacV}")
         annotationProcessor("com.sourcegraph:semanticdb-javac:${semanticdbJavacV}")

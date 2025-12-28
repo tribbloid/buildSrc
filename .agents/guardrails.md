@@ -27,3 +27,4 @@
     - Don’t bypass the aggregate root projects; build/test the correct `root-sparkXX` target.
     - Don't write experimental code outside test directory, always clean them up after to avoid breaking the project
       compilation
+    - Don't create symlink

@@ -91,7 +91,7 @@ idea {
 
         excludeDirs.addAll(
             files(
-                "buildSrc",
+//                "buildSrc",
                 "buildSrc/gradle",
                 "buildSrc/build",
                 "buildSrc/build/generated-sources/kotlin-dsl-accessors/kotlin", // TODO: this should be fully covered by previous line, need to report the bug

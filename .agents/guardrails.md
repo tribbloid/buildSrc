@@ -11,7 +11,8 @@
 - **Do**
     - **Compile** often to verify your work.
     - **Write** laconic, minimal and elegant code that does the function.
-    - **Format** with `scalafmt` and **Commit** code before start editing. Commit message should start with "!amend [AI]" followed by your intention.
+    - **Format** with `scalafmt` and **Commit** code before start editing. Commit message should start with "!
+      amend [AI]" followed by your intention.
     - **Test** at the end of each iteration.
     - **Report** number of successful and failed tests at the end of each task
     - **Run** MiMa checks on changed modules.
@@ -22,7 +23,8 @@
     - Don’t change CI secrets or publish settings.
     - Don’t break binary compatibility without coordination and proper MiMa filters and versioning.
     - Don’t introduce heavy dependencies into core APIs.
-    - Don't delete existing code and test cases.
+    - Don't delete existing code, comment them out if necessary.
+    - Don't delete or modify existing test cases.
     - Don't use JVM runtime reflection and language features that lack type safety, unless neccessary.
     - Don’t bypass the aggregate root projects; build/test the correct `root-sparkXX` target.
     - Don't write experimental code outside test directory, always clean them up after to avoid breaking the project

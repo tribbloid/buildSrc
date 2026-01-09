@@ -53,7 +53,7 @@ project/plugins/project/
 # Compiler
 out
 output
-out
+bin
 */target/
 
 #Misc

@@ -20,13 +20,14 @@
     - **Document** user-facing changes; add/adjust tests accordingly.
 
 - **Don’t**
+    - Don't use "???" or other placeholders
+    - Don't use runtime type cast (e.g. `asInstanceOf`) unless you have a specific reason
     - Don’t change CI secrets or publish settings.
-    - Don’t break binary compatibility without coordination and proper MiMa filters and versioning.
     - Don’t introduce heavy dependencies into core APIs.
-    - Don't delete existing code, comment them out if necessary.
+    - Don't delete existing code or document, comment them out if necessary.
     - Don't delete or modify existing test cases.
     - Don't use JVM runtime reflection and language features that lack type safety, unless neccessary.
-    - Don’t bypass the aggregate root projects; build/test the correct `root-sparkXX` target.
+    - Don’t bypass the aggregate root projects; build/test the entire project.
     - Don't write experimental code outside test directory, always clean them up after to avoid breaking the project
       compilation
     - Don't create symlink

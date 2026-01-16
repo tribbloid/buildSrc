@@ -63,7 +63,7 @@ allprojects {
                     additionalParameters.addAll(
                         listOf(
                             "-Vimplicits", "-Vimplicits-verbose-tree", "-Vtype-diffs",
-                            "-P:splain:Vimplicits-diverging",
+//                            "-P:splain:Vimplicits-diverging",
                             "-P:splain:Vtype-detail:4",
                             "-P:splain:Vtype-diffs-detail:3",
 //                            "-P:splain:Vdebug"

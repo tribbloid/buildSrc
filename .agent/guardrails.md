@@ -21,7 +21,7 @@
 
 - **Don’t**
     - Don't use "???" or other placeholders
-    - Don't use runtime type cast (e.g. `asInstanceOf`) unless you have a specific reason
+    - Don't use runtime type cast (e.g. `asInstanceOf` function) unless you have a specific reason
     - Don't use hardcoded names of package, namespace, class, or type
     - Don’t change CI secrets or publish settings.
     - Don’t introduce heavy dependencies into core APIs.

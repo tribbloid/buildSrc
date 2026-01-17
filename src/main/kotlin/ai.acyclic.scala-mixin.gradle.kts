@@ -1,5 +1,4 @@
 import com.github.benmanes.gradle.versions.updates.DependencyUpdatesTask
-import org.gradle.kotlin.dsl.named
 
 plugins {
 
@@ -18,7 +17,7 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
     }
 }
 
-val scalametaV = "4.14.4"
+val scalametaV = "4.14.5"
 
 allprojects {
 

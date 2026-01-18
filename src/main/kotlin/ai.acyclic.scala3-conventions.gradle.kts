@@ -34,12 +34,12 @@ allprojects {
 //                        "-source:future-migration",
 //                        "-source:future",
 
-//                        "-language:experimental.modularity",
                         "-explain-cyclic",
 
                         "-Wunused:all",// demand by scalafix
 
-//                        "-language:experimental.dependent"
+                        "-language:experimental.modularity",
+//                        "-language:experimental.dependent",
 
 //                        "-Ydebug",
                     )

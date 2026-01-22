@@ -10,7 +10,8 @@ tasks {
     register<HtmlDependencyReportTask>("logCriticalDependencies") {
         setConfiguration("testRuntimeClasspath")
         outputFile = logDir.file("dependencies.txt").asFile
-        reports.html.outputLocation = logDir.dir("dependencies")
+        reports.html.required.set(true)
+        reports.html.outputLocation.set(logDir.dir("dependencies"))
     }
 
 // Register task tree generation task

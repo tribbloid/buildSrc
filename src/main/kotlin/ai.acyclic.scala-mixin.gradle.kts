@@ -17,7 +17,7 @@ tasks.named<DependencyUpdatesTask>("dependencyUpdates").configure {
     }
 }
 
-val scalametaV = "4.14.5"
+val scalametaV = "4.14.7"
 
 allprojects {
 

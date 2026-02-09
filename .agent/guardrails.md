@@ -20,15 +20,17 @@
     - **Document** user-facing changes; add/adjust tests accordingly.
 
 - **Don’t**
-    - Don't use "???" or other placeholders
-    - Don't use runtime type cast (e.g. `asInstanceOf` function) unless you have a specific reason
-    - Don't use hardcoded names of package, namespace, class, or type
+    - Don't use "???" or other placeholders.
+    - Don't use runtime type cast (e.g. `asInstanceOf` function) unless you have a specific reason.
+    - Don't use hardcoded names of package, namespace, class, or type in String literals.
     - Don’t change CI secrets or publish settings.
-    - Don’t introduce heavy dependencies into core APIs.
-    - Don't delete existing code or document, comment them out if necessary.
-    - Don't delete or modify existing test cases.
+    - Don't delete existing code, document or test cases, comment them out if necessary.
     - Don't use JVM runtime reflection and language features that lack type safety, unless neccessary.
     - Don’t bypass the aggregate root projects; build/test the entire project.
+    - Don't define finite special cases for inductive data types.
     - Don't write experimental code outside test directory, always clean them up after to avoid breaking the project
       compilation
     - Don't create symlink
+
+- **Ask**
+    - Ask before introducing new dependencies.

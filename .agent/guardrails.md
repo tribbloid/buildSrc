@@ -14,6 +14,8 @@
     - **Format** with `scalafmt` and **Commit** code before start editing. Commit message should start with "!
       amend [AI]" followed by your intention.
     - **Test** at the end of each iteration.
+    - When solving compilation errors in implicit resolution, **Reproduce** the error first with an explicit, elaborated
+      test case.
     - **Report** number of successful and failed tests at the end of each task
     - **Run** MiMa checks on changed modules.
     - **Keep Spark deps Provided**; do not add Spark as compile dependency.

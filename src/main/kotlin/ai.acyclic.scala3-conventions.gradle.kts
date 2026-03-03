@@ -27,6 +27,8 @@ allprojects {
 //                        "-verbose", // enable in case of compiler bug
 //                        "-explain",
 
+                        "-Yexplicit-nulls",
+
                         "-feature",
 
 //                        "-rewrite",

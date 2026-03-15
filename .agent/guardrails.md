@@ -10,25 +10,26 @@
 
 - **Do**
     - **Compile** often to verify your work.
-    - **Write** laconic, minimal and elegant code that does the function.
+    - **Write** laconic code with absolute type safety.
     - **Format** with `scalafmt` and **Commit** code before start editing. Commit message should start with "!
       amend [AI]" followed by your intention.
-    - **Test** at the end of each iteration.
+    - **Test** the whole project at the end of each iteration.
     - When solving compilation errors in implicit resolution, **Reproduce** the error first with an explicit, elaborated
       test case.
     - **Report** number of successful and failed tests at the end of each task
     - **Run** MiMa checks on changed modules.
     - **Keep Spark deps Provided**; do not add Spark as compile dependency.
-    - **Document** user-facing changes; add/adjust tests accordingly.
+    - **Document** user-facing changes
 
 - **Don’t**
     - Don't use "???" or other placeholders.
-    - Don't use unsafe type cast (e.g. `asInstanceOf` function) without asking.
+    - Don't use type-unsafe code (e.g. `asInstanceOf`).
     - Don't use hardcoded names of package, namespace, class, or type in String literals.
+    - Don't alter test case or change goal post.
     - Don’t change CI secrets or publish settings.
     - Don't delete existing code, document or test cases, comment them out if necessary.
     - Don't use JVM runtime reflection and language features that lack type safety, unless neccessary.
-    - Don’t bypass the aggregate root projects; build/test the entire project.
+    - Don’t bypass the root project; build/test the entire project.
     - Don't define finite special cases for inductive data types.
     - Don't write experimental code outside test directory, always clean them up after to avoid breaking the project
       compilation

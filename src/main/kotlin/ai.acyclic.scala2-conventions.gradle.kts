@@ -34,7 +34,7 @@ allprojects {
                         "-unchecked",
                         "-feature",
                         "-language:higherKinds",
-                        "-language:existentials",
+//                        "-language:existentials", // removed in Scala 3!
 
 
 //                        "-Vtyper",
